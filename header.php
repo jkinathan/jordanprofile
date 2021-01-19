@@ -10,7 +10,7 @@
 <div class="topnav" id="myTopnav">
   <a href="index.php" class="active">Home</a>
   <a href="project.php">Publications & Projects</a>
-  <a href="#contact">Contact</a>
+  <a href="contact.php">Contact</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
