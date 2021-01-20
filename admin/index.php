@@ -27,22 +27,29 @@ if(isset($_POST['home'])){
     $institute = $_POST['institute'];
     $year = $_POST['year'];
     $address = $_POST['address'];
-    $photo = $_FILES['image'];
-    $target = "assets/images/".basename($image);
+    $photo = $_FILES['image']['name'];
+    // $target = "assets/images/".basename($image);
 
-    $sql = "insert into jordan (name,email,message) values 
-    ('$name','$email','$message')";
+    $filetmpname = $_FILES['image']['tmp_name'];
+    //folder where images will be uploaded
+    $folder = 'assets/images/';
+    //function for saving the uploaded images in a specific folder
+    move_uploaded_file($filetmpname, $folder.$photo);
 
-    if($conn->query($sql) && move_uploaded_file($_FILES['image']['tmp_name'], $target)){
+    $sql = "insert into home (about,course,institution,year,address,photo) values 
+    ('$about','$course','$institute','$year','$address','$photo')";
+
+    if($conn->query($sql)){
         echo '
         <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
             Information inserted successfully
         </div>';
     }
     else{
+        $conn-error;
         echo '<div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
             Error is here: ".$conn->error."
         </div>';
     }
@@ -98,13 +105,13 @@ if(isset($_POST['show'])){
 <!-- Home -->
 <div id="London" class="tabcontent">
   <b><h2>Update contents on the home page<h2></b>
-  <form action="">
+<form action="index.php" method="post" enctype="multipart/form-data">
         <small>About Information </small>
         <input type="text" name="about" placeholder="Enter about yourself information"/>
         <small>Course </small>
         <input type="text" name="course" placeholder="Enter your Course"/>
         <small>Institution of study </small>
-        <input type="text" name="institution" placeholder="Enter your Institution"/>
+        <input type="text" name="institute" placeholder="Enter your Institution"/>
         <small>Year of Study</small>
         <input type="text" name="year" placeholder="Enter your year of study"/>
         <small>Address </small>
