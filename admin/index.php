@@ -20,7 +20,7 @@ else{
 if(isset($_POST['home'])){
     echo "<br>";
 
-    #$id = $_POST['id'];
+    $id = $_POST['id'];
     
     $about = $_POST['about'];
     $course = $_POST['course'];
@@ -36,8 +36,8 @@ if(isset($_POST['home'])){
     //function for saving the uploaded images in a specific folder
     move_uploaded_file($filetmpname, $folder.$photo);
 
-    $sql = "insert into home (about,course,institution,year,address,photo) values 
-    ('$about','$course','$institute','$year','$address','$photo')";
+    $sql = "insert into home (id,about,course,institution,year,address,photo) values 
+    ('$id','$about','$course','$institute','$year','$address','$photo')";
 
     if($conn->query($sql)){
         echo '
@@ -47,7 +47,7 @@ if(isset($_POST['home'])){
         </div>';
     }
     else{
-        $conn-error;
+        
         echo '<div class="alert">
         <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
             Error is here: ".$conn->error."
@@ -55,38 +55,124 @@ if(isset($_POST['home'])){
     }
 
 }
-//displaying data code
-if(isset($_POST['show'])){
+//updating home data
 
+if(isset($_POST['update'])){
+    echo "<br>";
 
-    $sql = "select * from jordan";
-
-    $myquery = $conn->query($sql);
+    // $id = $_POST['id'];
     
-    while($result = $myquery->fetch_assoc()){
+    $about = $_POST['about'];
+    $course = $_POST['course'];
+    $institute = $_POST['institute'];
+    $year = $_POST['year'];
+    $address = $_POST['address'];
+    $photo = $_FILES['image']['name'];
+    // $target = "assets/images/".basename($image);
+
+    $filetmpname = $_FILES['image']['tmp_name'];
+    //folder where images will be uploaded
+    $folder = 'assets/images/';
+    //function for saving the uploaded images in a specific folder
+    move_uploaded_file($filetmpname, $folder.$photo);
+
+    $sql = "UPDATE home SET about= '$about',course='$course',institution='$institute',year='$year',address='$address',photo='$photo' WHERE id=1";
+
+    if($conn->query($sql)){
+        echo '
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            Home Information updated successfully please click home tab to see new changes
+        </div>';
+    }
+    else{
         
-        echo '<footer>';
-        echo '<table class="table bg-warning"">
-                <thead class="thead-dark">
-                    <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Message</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>';
-                    echo '<th scope="row">'.$result['id'].'</th>';
-                    echo '<td>'.$result['name'].'</td>';
-                    echo '<td>'.$result['email'].'</td>';
-                    echo '<td>'.$result['message'].'</td>
-                </tr>
-                </tbody>
-            </table>';
-                
-        echo '</footer>';
+        echo '<div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            Error is here: ".$conn->error."
+        </div>';
+    }
+
+}
+
+
+//books inserting
+
+if(isset($_POST['bookadd'])){
+    echo "<br>";
+
+    $id = $_POST['id'];
+    
+    $name = $_POST['name'];
+    $author = $_POST['author'];
+    $photo = $_FILES['image']['name'];
+    $description = $_POST['description'];
+    
+    // $target = "assets/images/".basename($image);
+
+    $filetmpname = $_FILES['image']['tmp_name'];
+    //folder where images will be uploaded
+    $folder = 'assets/images/';
+    //function for saving the uploaded images in a specific folder
+    move_uploaded_file($filetmpname, $folder.$photo);
+
+    $sql = "insert into books (id,name,author,image,description) values 
+    ('$id','$name','$author','$photo','$description')";
+
+    if($conn->query($sql)){
+        echo '
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            Book Resource Added successfully
+        </div>';
+    }
+    else{
         
+        echo '<div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            Error is here: ".$conn->error."
+        </div>';
+    }
+
+}
+
+//books updating
+
+if(isset($_POST['bookupdating'])){
+    echo "<br>";
+
+    $id = $_POST['id'];
+    
+    $name = $_POST['name'];
+    $author = $_POST['author'];
+    $description = $_POST['description'];
+    $photo = $_FILES['image']['name'];
+    // $target = "assets/images/".basename($image);
+
+    $filetmpname = $_FILES['image']['tmp_name'];
+    //folder where images will be uploaded
+    $folder = 'assets/images/';
+    //function for saving the uploaded images in a specific folder
+    move_uploaded_file($filetmpname, $folder.$photo);
+
+    $sql = "UPDATE books SET name= '$name',author='$author',image='$photo',description='$description' WHERE id=$id";
+
+    $sql = "insert into books (id,name,author,image,description) values 
+    ('$id','$name','$author','$photo','$description')";
+
+    if($conn->query($sql)){
+        echo '
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            Book Resource Updated successfully
+        </div>';
+    }
+    else{
+        
+        echo '<div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            Error is here: ".$conn->error."
+        </div>';
     }
 
 }
@@ -105,7 +191,65 @@ if(isset($_POST['show'])){
 <!-- Home -->
 <div id="London" class="tabcontent">
   <b><h2>Update contents on the home page<h2></b>
+
+<?php
+  
+    $sql = "select * from home";
+
+    $myquery = $conn->query($sql);
+
+    echo "
+    <div style='overflow-x:auto;'>
+    <table border='1'>
+
+    <tr>
+
+    <th>Id</th>
+
+    <th>About</th>
+
+    <th>Course</th>
+
+    <th>Institution</th>
+
+    <th>Year of Study</th>
+
+    <th>Address</th>
+
+    <th>Photo</th>
+    </tr>";
+
+
+
+    while($row = $myquery->fetch_assoc()){
+
+        echo "<tr>";
+
+        echo "<td>" . $row['id'] . "</td>";
+
+        echo "<td>" . $row['about'] . "</td>";
+
+        echo "<td>" . $row['course'] . "</td>";
+
+        echo "<td>" . $row['institution'] . "</td>";
+
+        echo "<td>" . $row['year'] . "</td>";
+
+        echo "<td>" . $row['address'] . "</td>";
+
+        echo "<td>" . $row['photo'] . "</td>";
+
+        echo "</tr>";
+
+        }
+
+        echo "</table> </div>";
+
+?>
 <form action="index.php" method="post" enctype="multipart/form-data">
+        <small>ID </small>
+        <input type="text" name="id" value="1" disabled />
+        
         <small>About Information </small>
         <input type="text" name="about" placeholder="Enter about yourself information"/>
         <small>Course </small>
@@ -118,7 +262,8 @@ if(isset($_POST['show'])){
         <input type="text" name="address" placeholder="Enter your residential address"/>
         <small>Profile Photo</small>
         <input type="file" name="image" /><br>  
-    <button type="submit" name="home">insert</button>
+    <button type="submit" name="update">Update information</button>
+    <!-- <button type="submit" name="show">Display Info</button> -->
     </div>
   </div>
 </form>
@@ -130,18 +275,72 @@ if(isset($_POST['show'])){
 <!-- Books -->
 <div id="Paris" class="tabcontent">
     <b><h2>Content for books on the projects and publications page<h2></b>
-        <form action="">
-              <small>Book Name </small>
-              <input type="text" name="about" placeholder="Enter book name"/>
+        
+    <?php
+  
+    $sql = "select * from books";
+
+    $myquery = $conn->query($sql);
+
+    echo "
+    <div style='overflow-x:auto;'>
+    <table border='1'>
+
+    <tr>
+
+    <th>Id</th>
+
+    <th>Name</th>
+
+    <th>Author</th>
+
+    <th>Image</th>
+
+    <th>Description</th>
+
+    </tr>";
+
+
+
+    while($row = $myquery->fetch_assoc()){
+
+        echo "<tr>";
+
+        echo "<td>" . $row['id'] . "</td>";
+
+        echo "<td>" . $row['name'] . "</td>";
+
+        echo "<td>" . $row['author'] . "</td>";
+
+        echo "<td>" . $row['image'] . "</td>";
+
+        echo "<td>" . $row['description'] . "</td>";
+
+        echo "</tr>";
+
+        }
+
+        echo "</table> </div>";
+
+?>
+    <form action="index.php" method="post" enctype="multipart/form-data">
+        
+            <small>Book ID </small>
+            <input type="text" name="id" placeholder="Enter unique book id"/>
+                
+            <small>Book Name </small>
+              <input type="text" name="name" placeholder="Enter book name"/>
               <small>Book Author </small>
               <input type="text" name="author" placeholder="Enter author of book"/>
               <small>Image</small>
               <input type="file" name="image" /><br>
               <small>Description</small>
-              <input type="text" name="desc" placeholder="Enter small description"/>
+              <input type="text" name="description" placeholder="Enter small description"/>
               
-            <button>Submit</button>
-          </div>
+            <button type="submit" name="bookadd">Add new Book</button>
+            <button type="submit" name="bookupdate">Update Book</button>
+              
+        </div>
         </div>
       </form>
 </div>
