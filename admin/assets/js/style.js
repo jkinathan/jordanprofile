@@ -20,4 +20,3 @@ function openCity(evt, cityName) {
     evt.currentTarget.className += " active";
   }
   
-  
