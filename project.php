@@ -5,14 +5,13 @@
   <h2></h2>
 </div>
 
-
 <br>
-
-
 
 <div class="wrapper">
   <h1>PUBLICATIONS AND PROJECTS</h1>
-  <h4>Tools, Technologies, Stack</h4>
+  <h4 class="toolheaders">Tools, Technologies, Stack</h4>
+  <!-- cornflowerblue -->
+  <br>
     <div style="padding-left:16px">
         <p>
             <svg class="project" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="92" height="28" role="img" aria-label="GITHUB"><title >GITHUB</title><g shape-rendering="crispEdges"><rect width="0" height="28" fill="#555"/><rect x="0" width="92" height="28" fill="black"/></g><g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" text-rendering="geometricPrecision" font-size="100"><image x="9" y="7" width="14" height="14" xlink:href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJ3aGl0ZXNtb2tlIiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+R2l0SHViIGljb248L3RpdGxlPjxwYXRoIGQ9Ik0xMiAuMjk3Yy02LjYzIDAtMTIgNS4zNzMtMTIgMTIgMCA1LjMwMyAzLjQzOCA5LjggOC4yMDUgMTEuMzg1LjYuMTEzLjgyLS4yNTguODItLjU3NyAwLS4yODUtLjAxLTEuMDQtLjAxNS0yLjA0LTMuMzM4LjcyNC00LjA0Mi0xLjYxLTQuMDQyLTEuNjFDNC40MjIgMTguMDcgMy42MzMgMTcuNyAzLjYzMyAxNy43Yy0xLjA4Ny0uNzQ0LjA4NC0uNzI5LjA4NC0uNzI5IDEuMjA1LjA4NCAxLjgzOCAxLjIzNiAxLjgzOCAxLjIzNiAxLjA3IDEuODM1IDIuODA5IDEuMzA1IDMuNDk1Ljk5OC4xMDgtLjc3Ni40MTctMS4zMDUuNzYtMS42MDUtMi42NjUtLjMtNS40NjYtMS4zMzItNS40NjYtNS45MyAwLTEuMzEuNDY1LTIuMzggMS4yMzUtMy4yMi0uMTM1LS4zMDMtLjU0LTEuNTIzLjEwNS0zLjE3NiAwIDAgMS4wMDUtLjMyMiAzLjMgMS4yMy45Ni0uMjY3IDEuOTgtLjM5OSAzLS40MDUgMS4wMi4wMDYgMi4wNC4xMzggMyAuNDA1IDIuMjgtMS41NTIgMy4yODUtMS4yMyAzLjI4NS0xLjIzLjY0NSAxLjY1My4yNCAyLjg3My4xMiAzLjE3Ni43NjUuODQgMS4yMyAxLjkxIDEuMjMgMy4yMiAwIDQuNjEtMi44MDUgNS42MjUtNS40NzUgNS45Mi40Mi4zNi44MSAxLjA5Ni44MSAyLjIyIDAgMS42MDYtLjAxNSAyLjg5Ni0uMDE1IDMuMjg2IDAgLjMxNS4yMS42OS44MjUuNTdDMjAuNTY1IDIyLjA5MiAyNCAxNy41OTIgMjQgMTIuMjk3YzAtNi42MjctNS4zNzMtMTItMTItMTIiLz48L3N2Zz4="/><text fill="#fff" x="550" y="175" font-weight="bold" transform="scale(.1)" textLength="500">GITHUB</text></g></svg>
@@ -33,11 +32,11 @@
         </p>
     </div>
     <br>
-    <h4>Currently reading</h4>
+    <h4 class="toolheaders">Currently reading</h4>
   <div class="cols">
 			<div class="col" ontouchstart="this.classList.toggle('hover');">
 				<div class="container">
-					<div class="front" style="background-image: url("images/flutter.png")">
+					<div class="front" style="background-image: url('assets/images/flutter.png');">
 						<div class="inner">
 							<p>Flutter in Action</p>
                             <span>by Eric Windmill</span>
@@ -52,7 +51,7 @@
 			</div>
 			<div class="col" ontouchstart="this.classList.toggle('hover');">
 				<div class="container">
-					<div class="front" style="url(https://unsplash.it/511/511/)">
+					<div class="front" style="background-image: url('assets/images/django.jpg');">
 						<div class="inner">
 							<p>Django3 by Example</p>
               <span>by Antonio Mele</span>
@@ -67,7 +66,7 @@
 			</div>
 			<div class="col" ontouchstart="this.classList.toggle('hover');">
 				<div class="container">
-					<div class="front" style="background-image: url(https://unsplash.it/502/502/)">
+					<div class="front" style="background-image: url('assets/images/react.jpg');">
 						<div class="inner">
 							<p>REACT</p>
               <span>by Lionel Lopez</span>
@@ -82,7 +81,7 @@
 			</div>
 			<div class="col" ontouchstart="this.classList.toggle('hover');">
 				<div class="container">
-					<div class="front" style="background-image: url(https://unsplash.it/503/503/)">
+					<div class="front" style="background-image: url('assets/images/vue.png');">
 						<div class="inner">
 							<p>Jump Start Vue.js</p>
               <span>by Nilson Jacques</span>
@@ -97,18 +96,19 @@
 			</div>
 			
 		</div>
+		<br>
+			<h4 class="toolheaders">My Projects</h4>
+		<br>
  </div>
+ 
+ 
 
+<div class="cols">
 
-
-
-
-
-<div class="bigdiv">
     <div class="column card" style="max-width: 420px;">
     <img src="assets/images/project1.png" alt="Avatar" style="width:100%">
     <div class="container">
-        <h4><b>Tubayo</b></h4>
+        <h4><b style="color: cornflowerblue;">Tubayo</b></h4>
         <p>Tours and Travel</p>
         <p><button>Visit Website</button></p>
     </div>
@@ -117,7 +117,7 @@
     <div class="column card" style="max-width: 420px;">
     <img src="assets/images/project2.png" alt="Avatar" style="width:100%">
     <div class="container">
-        <h4><b>SolarMovies</b></h4>
+        <h4><b style="color: cornflowerblue;">SolarMovies</b></h4>
         <p>Movies application</p>
         <p><button>Visit Website</button></p>
     </div>
@@ -126,7 +126,7 @@
     <div class="column card" style="max-width: 420px;">
     <img src="assets/images/project4.png" alt="Avatar" style="width:100%">
     <div class="container">
-        <h4><b>United Diesel</b></h4>
+        <h4><b style="color: cornflowerblue;">United Diesel</b></h4>
         <p>Motor Hardware app</p>
         <p><button>Visit Website</button></p>
     </div>

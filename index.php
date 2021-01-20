@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="column card">
-    <h1>KINOBE JORDAN ATHANASIUS</h1>
+    <h1 class="toolheaders">KINOBE JORDAN ATHANASIUS</h1>
         <p class="title">Student Developer</p>
         <p>Uganda Christian University</p>
         <a href="#"><i class="fa fa-dribbble"></i></a>

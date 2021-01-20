@@ -204,6 +204,10 @@
     font-family: 'Montserrat';
     font-weight: 300;
   }
+
+  .toolheaders{
+    color: cornflowerblue;
+  }
   
   @media screen and (max-width: 64rem){
     .col{
