@@ -5,9 +5,12 @@
 </div>
 
 <div class="row" style="background-color: lightyellow;">
+  
+
   <div class="column">
-    <div class="card">
-      <img src="assets/images/profile.jpeg" alt="Jordan" style="border-radius: 5px; max-height: 380px;width:100%;">
+
+  <div class="card">
+      <img src="assets/images/profile.jpeg" alt="Jordan" style="border-radius: 10px; max-height: 380px;width:100%;">
       <p>
       <button style="font-family: monospace;">
           Experienced Junior Developer with a demonstrated history of working in the computer software industry. 
@@ -43,9 +46,9 @@
       <p>Plot 56, Kiwafu,Circular road, Entebbe Uganda</p>
     </div>
 
-    <button class="tablink" onclick="openCity('London', this, 'red')" id="defaultOpen">Course</button>
-    <button class="tablink" onclick="openCity('Paris', this, 'green')">Institution</button>
-    <button class="tablink" onclick="openCity('Tokyo', this, 'blue')">Year</button>
+    <button class="tablink" onclick="openCity('London', this, 'cornflowerblue')" id="defaultOpen">Course</button>
+    <button class="tablink" onclick="openCity('Paris', this, 'mediumturquoise')">Institution</button>
+    <button class="tablink" onclick="openCity('Tokyo', this, 'purple')">Year</button>
     <button class="tablink" onclick="openCity('Oslo', this, 'orange')" style="border-radius: 0px; 0px; 0px; 8px;">Address</button>
   </div>
 </div>

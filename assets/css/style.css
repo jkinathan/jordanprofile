@@ -62,6 +62,9 @@ body {
     margin: auto;
     text-align: center;
   }
+  .card:hover {
+    box-shadow: 0 24px 8px 10px rgba(80, 168, 219, 0.5);
+  }
 
   
   .title {
@@ -75,7 +78,7 @@ body {
     display: inline-block;
     padding: 8px;
     color: white;
-    background-color: #000;
+    background-color: cornflowerblue;
     text-align: center;
     cursor: pointer;
     width: 100%;
@@ -119,9 +122,9 @@ body {
   }
   
   /* Style each tab content individually */
-  #London {background-color:red;}
-  #Paris {background-color:green;}
-  #Tokyo {background-color:blue;}
+  #London {background-color:cornflowerblue;}
+  #Paris {background-color:mediumturquoise;}
+  #Tokyo {background-color:purple;}
   #Oslo {background-color:orange;}
 
 /* row and column */
@@ -143,3 +146,6 @@ body {
       width: 100%;
     }
   }
+
+
+  

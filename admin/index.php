@@ -90,23 +90,20 @@ if(isset($_POST['update'])){
 if(isset($_POST['bookadd'])){
     echo "<br>";
 
-    $id = $_POST['bid'];
-    
-    $name = $_POST['bname'];
-    $author = $_POST['bauthor'];
-    // $photo = $_FILES['bimage']['name'];
-    $description = $_POST['bdescription'];
-    
-    // $target = "assets/images/".basename($image);
+    $bbid = $_POST['bookid'];
+    $bbname = $_POST['bookname'];
+    $bbphoto = $_FILES['bookimage']['name'];
+    $bbauthor = $_POST['bookauthor'];
+    $bbdescription = $_POST['bookdescription'];
 
-    // $filetmpname = $_FILES['bimage']['tmp_name'];
-    // //folder where images will be uploaded
-    // $folder = 'assets/images/';
-    // //function for saving the uploaded images in a specific folder
-    // move_uploaded_file($filetmpname, $folder.$photo);
+    $bfiletmpname = $_FILES['bookimage']['tmp_name'];
+    //folder where images will be uploaded
+    $bfolder = 'assets/images/';
+    //function for saving the uploaded images in a specific folder
+    move_uploaded_file($bfiletmpname, $bfolder.$bbphoto);
 
-    $sql = "insert into books (id,name,author,description) values 
-    ('$id','$name','$author','$description')";
+    $sql = "insert into books (id,name,photo,author,description) values 
+    ('$bbid','$bbname','$bbphoto','$bbauthor','$bbdescription')";
 
     if($conn->query($sql)){
         echo '
@@ -238,7 +235,7 @@ if(isset($_POST['projectupdate'])){
 }
 //admin user update
 
-if(isset($_POST['adminupdate'])){
+if(isset($_POST['createuser'])){
     echo "<br>";
 
     // $pid = $_POST['pid'];
@@ -256,6 +253,7 @@ if(isset($_POST['adminupdate'])){
         </div>';
     }
     else{
+        $appass = md5($appass);
         $sql = "UPDATE users SET name= '$aname',email='$aemail',password='$appass' WHERE id=1";
 
 
@@ -414,7 +412,7 @@ if(isset($_POST['adminupdate'])){
 
         echo "<td>" . $row['author'] . "</td>";
 
-        echo "<td>" . $row['image'] . "</td>";
+        echo "<td>" . $row['photo'] . "</td>";
 
         echo "<td>" . $row['description'] . "</td>";
 
@@ -425,26 +423,25 @@ if(isset($_POST['adminupdate'])){
         echo "</table> </div>";
 
 ?>
-    <form action="index.php" method="post" enctype="multipart/form-data">
+    <form action="index.php" method="POST" enctype="multipart/form-data">
         
-            <small>Book ID </small>
-            <input type="text" name="bid" placeholder="Enter unique book id"/>
-                
-            <small>Book Name </small>
-              <input type="text" name="bname" placeholder="Enter book name"/>
-              <small>Book Author </small>
-              <input type="text" name="bauthor" placeholder="Enter author of book"/>
-              <small>Image</small>
-              <input type="file" name="bimage" /><br>
-              <small>Description</small>
-              <input type="text" name="bdescription" placeholder="Enter small description"/>
-              
-            <button type="submit" name="bookadd">Add new Book</button>
-            <button type="submit" name="bookupdate">Update Book</button>
-              
+        <small>Book ID </small>
+        <input type="text" name="bookid" placeholder="Enter unique book id"/>
+        <small>Book Name </small>
+            <input type="text" name="bookname" placeholder="Enter book name"/>
+            <small>Book Author </small>
+            <input type="text" name="bookauthor" placeholder="Enter author of book"/>
+            <small>Image</small>
+            <input type="file" name="bookimage" /><br>
+            <small>Description</small>
+            <input type="text" name="bookdescription" placeholder="Enter small description"/>
+            
+        <button type="submit" name="bookadd">Add new Book</button>
+        <button type="submit" name="bookupdate">Update Book</button>
+            
         </div>
         </div>
-      </form>
+    </form>
 </div>
 
 <!-- Projects -->
@@ -558,7 +555,7 @@ if(isset($_POST['adminupdate'])){
             echo "</table> </div>";
 
     ?>
-        <form action="index.php" method="POST" enctype="multipart/form-data">
+        <form action="index.php" method="POST">
             <small>ID</small>
               <input type="text" name="aid" value="1" disabled placeholder="Enter about your name"/>
               <small>Name</small>
@@ -566,9 +563,9 @@ if(isset($_POST['adminupdate'])){
               <small>Email </small>
               <input type="text" name="aemail" placeholder="Enter your email"/>
               <small>Password</small>
-              <input type="text" name="apass" placeholder="Enter your new admin password"/>
+              <input type="password" name="apass" placeholder="Enter your new admin password"/><br>
               <small>Confirm password</small>
-              <input type="text" name="apass2" placeholder="Enter your new admin password again"/>
+              <input type="password" name="apass2" placeholder="Enter your new admin password again"/><br>
             <button type="submit" name="createuser">Update Admin details</button>
           </div>
         </div>
