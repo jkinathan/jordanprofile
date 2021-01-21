@@ -10,6 +10,6 @@ if($conn->error){
     echo "DB error ".$conn->error."";
 }
 else{
-    echo "Connection successful";
+    // echo "Connection successful";
 }
 ?>

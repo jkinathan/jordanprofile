@@ -589,8 +589,6 @@ if(isset($_POST['createuser'])){
 
                 <tr>
 
-                <th>Id</th>
-
                 <th>Firstname</th>
 
                 <th>Lastname</th>
@@ -606,8 +604,6 @@ if(isset($_POST['createuser'])){
                 while($row = $myquery->fetch_assoc()){
 
                     echo "<tr>";
-
-                    echo "<td>" . $row['id'] . "</td>";
 
                     echo "<td>" . $row['firstname'] . "</td>";
 

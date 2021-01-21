@@ -1,5 +1,14 @@
 <?php include 'header.php';
+include 'admin/server.php'
 ?>
+
+<?php
+  
+  $sql = "select * from home";
+  
+  $myquery = $conn->query($sql);
+  while($row = $myquery->fetch_assoc()){
+  ?>
 <div style="padding-left:16px">
   <h2>WELCOME TO MY PROFILE PAGE</h2>
 </div>
@@ -13,7 +22,8 @@
       <img src="assets/images/profile.jpeg" alt="Jordan" style="border-radius: 10px; max-height: 380px;width:100%;">
       <p>
       <button style="font-family: monospace;">
-          Experienced Junior Developer with a demonstrated history of working in the computer software industry. 
+      <?php echo $row["about"]; }?>
+          <!-- Experienced Junior Developer with a demonstrated history of working in the computer software industry.  -->
         </button>
       </p>
     </div>
@@ -22,7 +32,7 @@
     <h1 class="toolheaders">KINOBE JORDAN ATHANASIUS</h1>
         <p class="title">Student Developer</p>
         <p>Uganda Christian University</p>
-        <a href="#"><i class="fa fa-dribbble"></i></a>
+        <a href="#"><i class="fa fa-github"></i></a>
         <a href="#"><i class="fa fa-twitter"></i></a>
         <a href="#"><i class="fa fa-linkedin"></i></a>
         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -88,6 +98,7 @@ function openCity(cityName, elmnt, color) {
 document.getElementById("defaultOpen").click();
 
 </script>
-<footer></footer>
+<?php include 'footer.php'?>
+
 </body>
 </html>
