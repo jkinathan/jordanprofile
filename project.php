@@ -1,5 +1,17 @@
 <?php include 'header.php';
+include 'admin/server.php'
 ?>
+
+<?php
+  
+  $sql = "select * from books";
+  
+  $myquery = $conn->query($sql);
+  while($row = $myquery->fetch_assoc()){
+		$books[] = $row;
+	}
+	
+  ?>
 <link rel="stylesheet" href="assets/css/project.css">
 <div style="padding-left:16px">
   <h2></h2>
@@ -34,67 +46,27 @@
     <br>
     <h4 class="toolheaders">Currently reading</h4>
   <div class="cols">
+  <?php
+	foreach ($books as $book)
+	{
+  ?>
 			<div class="col" ontouchstart="this.classList.toggle('hover');">
 				<div class="container">
-					<div class="front" style="background-image: url('assets/images/flutter.png');">
+					<div class="front" style="background-image: url('admin/assets/images/<?php echo $book['photo']; ?>');">
 						<div class="inner">
-							<p>Flutter in Action</p>
-                            <span>by Eric Windmill</span>
+							<p><?php echo $book['name']; ?></p>
+                            <span>by <?php echo $book['author']; ?></span>
 						</div>
 					</div>
 					<div class="back">
 						<div class="inner">
-						  <p>Flutter in Action teaches you to build professional-quality mobile applications using the Flutter SDK and the Dart programming language.</p>
+						  <p><?php echo $book['description']; ?></p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col" ontouchstart="this.classList.toggle('hover');">
-				<div class="container">
-					<div class="front" style="background-image: url('assets/images/django.jpg');">
-						<div class="inner">
-							<p>Django3 by Example</p>
-              <span>by Antonio Mele</span>
-						</div>
-					</div>
-					<div class="back">
-						<div class="inner">
-							<p>Build Powerful and reliable Python web Applications from scratch</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col" ontouchstart="this.classList.toggle('hover');">
-				<div class="container">
-					<div class="front" style="background-image: url('assets/images/react.jpg');">
-						<div class="inner">
-							<p>REACT</p>
-              <span>by Lionel Lopez</span>
-						</div>
-					</div>
-					<div class="back">
-						<div class="inner">
-							<p>Quickstart Step-By-Step Guide to Learning React Javascript Library</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col" ontouchstart="this.classList.toggle('hover');">
-				<div class="container">
-					<div class="front" style="background-image: url('assets/images/vue.png');">
-						<div class="inner">
-							<p>Jump Start Vue.js</p>
-              <span>by Nilson Jacques</span>
-						</div>
-					</div>
-					<div class="back">
-						<div class="inner">
-							<p>Build your own sophisticated web applications using vue.js</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			
+			<?php } ?>
+						
 		</div>
 		<br>
 			<h4 class="toolheaders">My Projects</h4>
@@ -102,35 +74,34 @@
  </div>
  
  
-
+ <?php
+  
+  $sql = "select * from projects";
+  
+  $myquery = $conn->query($sql);
+  while($row = $myquery->fetch_assoc()){
+		$projects[] = $row;
+	}
+	
+  ?>
 <div class="cols">
-
+  
+	<?php
+		foreach ($projects as $project)
+		{
+	?>
     <div class="column card" style="max-width: 420px;">
-    <img src="assets/images/project1.png" alt="Avatar" style="width:100%">
-    <div class="container">
-        <h4><b style="color: cornflowerblue;">Tubayo</b></h4>
-        <p>Tours and Travel</p>
-        <p><button>Visit Website</button></p>
+		<img src="admin/assets/images/<?php echo $project['image']; ?>" alt="Avatar" style="width:100%">
+		<div class="container">
+			<h4><b style="color: cornflowerblue;"><?php echo $project['name']; ?></b></h4>
+			<p><?php echo $project['description']; ?></p>
+			<p>
+				<button>Visit <a href="<?php echo $project['url']; ?>" style="color: white;"><?php echo $project['name']; ?></a></button>
+			</p>
+				
+		</div>
     </div>
-    </div>
-
-    <div class="column card" style="max-width: 420px;">
-    <img src="assets/images/project2.png" alt="Avatar" style="width:100%">
-    <div class="container">
-        <h4><b style="color: cornflowerblue;">SolarMovies</b></h4>
-        <p>Movies application</p>
-        <p><button>Visit Website</button></p>
-    </div>
-    </div>
-
-    <div class="column card" style="max-width: 420px;">
-    <img src="assets/images/project4.png" alt="Avatar" style="width:100%">
-    <div class="container">
-        <h4><b style="color: cornflowerblue;">United Diesel</b></h4>
-        <p>Motor Hardware app</p>
-        <p><button>Visit Website</button></p>
-    </div>
-    </div>
+	<?php } ?>
 </div>
 
 <?php include 'footer.php'?>

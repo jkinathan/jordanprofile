@@ -19,10 +19,10 @@ include 'admin/server.php'
   <div class="column">
 
   <div class="card">
-      <img src="assets/images/profile.jpeg" alt="Jordan" style="border-radius: 10px; max-height: 380px;width:100%;">
+      <img src="admin/assets/images/<?php echo $row["photo"]; ?>" alt="Jordan" style="border-radius: 10px; max-height: 380px;width:100%;">
       <p>
       <button style="font-family: monospace;">
-      <?php echo $row["about"]; }?>
+      <?php echo $row["about"]; ?>
           <!-- Experienced Junior Developer with a demonstrated history of working in the computer software industry.  -->
         </button>
       </p>
@@ -31,29 +31,29 @@ include 'admin/server.php'
   <div class="column card">
     <h1 class="toolheaders">KINOBE JORDAN ATHANASIUS</h1>
         <p class="title">Student Developer</p>
-        <p>Uganda Christian University</p>
-        <a href="#"><i class="fa fa-github"></i></a>
+        <p><?php echo $row["institution"]; ?></p>
+        <a href="https://github.com/jkinathan"><i class="fa fa-github"></i></a>
         <a href="#"><i class="fa fa-twitter"></i></a>
         <a href="#"><i class="fa fa-linkedin"></i></a>
         <a href="#"><i class="fa fa-facebook"></i></a>
     <div id="London" class="tabcontent" style="border-radius: 8px;">
       <h1>Course</h1>
-      <p>Bachelor of Science in Computer Science</p>
+      <p><?php echo $row["course"]; ?></p>
     </div>
 
     <div id="Paris" class="tabcontent" style="border-radius: 8px;">
       <h1>Institution</h1>
-      <p>Uganda Christian University Mukono.</p>
+      <p><?php echo $row["institution"]; ?></p>
     </div>
 
     <div id="Tokyo" class="tabcontent" style="border-radius: 8px;">
       <h1>Year of Study</h1>
-      <p>Second Year First Semester</p>
+      <p><?php echo $row["year"]; ?></p>
     </div>
 
     <div id="Oslo" class="tabcontent" style="border-radius: 8px;">
       <h1>Address</h1>
-      <p>Plot 56, Kiwafu,Circular road, Entebbe Uganda</p>
+      <p><?php echo $row["address"]; }?> Uganda</p>
     </div>
 
     <button class="tablink" onclick="openCity('London', this, 'cornflowerblue')" id="defaultOpen">Course</button>

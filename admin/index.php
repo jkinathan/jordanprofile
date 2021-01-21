@@ -127,20 +127,21 @@ if(isset($_POST['bookadd'])){
 if(isset($_POST['bookupdate'])){
     echo "<br>";
 
-    $id = $_POST['bid'];
-    $name = $_POST['bname'];
-    $author = $_POST['bauthor'];
-    $description = $_POST['bdescription'];
-    $photo = $_FILES['bimage']['name'];
+    $bkid = $_POST['bookid'];
+    $bkname = $_POST['bookname'];
+    $bkauthor = $_POST['bookauthor'];
+    $bkphoto = $_FILES['bookimage']['name'];
+    $bkdescription = $_POST['bookdescription'];
+    
     // $target = "assets/images/".basename($image);
 
-    $filetmpname = $_FILES['bimage']['tmp_name'];
+    $bkfiletmpname = $_FILES['bookimage']['tmp_name'];
     //folder where images will be uploaded
-    $folder = 'assets/images/';
+    $bkfolder = 'assets/images/';
     //function for saving the uploaded images in a specific folder
-    move_uploaded_file($filetmpname, $folder.$photo);
+    move_uploaded_file($bkfiletmpname, $bkfolder.$bkphoto);
 
-    $sql = "UPDATE books SET name= '$name',author='$author',image='$photo',description='$description' WHERE id=$id";
+    $sql = "UPDATE books SET name='$bkname',author='$bkauthor',photo='$bkphoto',description='$bkdescription' WHERE id=$bkid";
 
 
     if($conn->query($sql)){
