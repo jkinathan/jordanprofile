@@ -1,7 +1,17 @@
+
+<?php
+session_start();
+if(empty($_SESSION['logged_in']))
+{
+    header('Location: login.php');
+    exit;
+}
+?>
 <?php include 'header.php';
 ?>
 <?php 
 include 'server.php';?>
+
 <?php
 
 //inserting home information into our database
@@ -363,7 +373,7 @@ if(isset($_POST['createuser'])){
         <input type="text" name="address" placeholder="Enter your residential address"/>
         <small>Profile Photo</small>
         <input type="file" name="image" /><br>  
-    <button type="submit" name="update">Update information</button>
+    <button type="submit" name="update" style="background-color: greenyellow;">Update information</button>
     <!-- <button type="submit" name="show">Display Info</button> -->
     </div>
   </div>
@@ -437,8 +447,8 @@ if(isset($_POST['createuser'])){
             <small>Description</small>
             <input type="text" name="bookdescription" placeholder="Enter small description"/>
             
-        <button type="submit" name="bookadd">Add new Book</button>
-        <button type="submit" name="bookupdate">Update Book</button>
+        <button type="submit" name="bookadd" style="background-color: rgb(240, 67, 14);">Add new Book</button>
+        <button type="submit" name="bookupdate" style="background-color: greenyellow;">Update Book</button>
             
         </div>
         </div>
@@ -507,8 +517,8 @@ if(isset($_POST['createuser'])){
             <small>Project url</small>
             <input type="text" name="url" placeholder="Enter your project url"/>
               
-            <button type="submit" name="projectadd">Add new Project</button>
-            <button type="submit" name="projectupdate">Update Existing Project</button>
+            <button type="submit" name="projectadd" style="background-color:rgb(240, 67, 14);">Add new Project</button>
+            <button type="submit" name="projectupdate" style="background-color: greenyellow;">Update Existing Project</button>
           </div>
         </div>
       </form>
@@ -567,7 +577,7 @@ if(isset($_POST['createuser'])){
               <input type="password" name="apass" placeholder="Enter your new admin password"/><br>
               <small>Confirm password</small>
               <input type="password" name="apass2" placeholder="Enter your new admin password again"/><br>
-            <button type="submit" name="createuser">Update Admin details</button>
+            <button type="submit" name="createuser" style="background-color: greenyellow;">Update Admin details</button>
           </div>
         </div>
       </form>
@@ -625,3 +635,7 @@ if(isset($_POST['createuser'])){
         </div>
       </form>
 </div>
+
+
+<H1>Welcome to the Admin Dashboard</H1>
+<p>Please Select any tab above to start editing</p>

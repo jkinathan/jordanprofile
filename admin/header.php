@@ -9,7 +9,7 @@
 
 <div class="topnav" id="myTopnav">
   <a href="index.php" class="active">ADMIN</a>
-  
+  <a href="logout.php" style="float: right;">Logout</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>

@@ -153,3 +153,10 @@ border-color:cornflowerblue;
         -ms-flex-pack: center;
             justify-content: center;
   }
+
+th{
+  color: cornflowerblue;
+}
+button{
+  color: cornflowerblue;
+}

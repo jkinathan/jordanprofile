@@ -68,25 +68,35 @@ span.psw {
 </head>
 <?php
 	
-include 'admin/server.php';
-if(isset($_POST["login"])) 
-{
-	$myemail = $_POST['username'];
-	$mypassword = $_POST['password'];
-	
-	$sql = "SELECT * FROM 'users' WHERE name='$myemail' AND password='$mypassword'";
-	
-	$result = mysqli_query($conn,$sql);
-	$count = mysqli_num_rows($conn,$result);
-	if($count==TRUE)
-	{
-			echo "Successfully Logged in!";
-	}
-else
-{
-	echo "MEMBER DOES NOT EXIST";
-}
-}
+include 'server.php';
+session_start();
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];  
+    $password = $_POST['password'];  
+      
+        //to prevent from mysqli injection  
+        $username = stripcslashes($username);  
+        $password = stripcslashes($password);  
+        $username = mysqli_real_escape_string($conn, $username);  
+        $password = mysqli_real_escape_string($conn, $password);  
+      
+        $password = md5($password);
+        $sql = "select * from users where name = '$username' and password = '$password'";  
+        $result = mysqli_query($conn, $sql);  
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+        $count = mysqli_num_rows($result);  
+          
+        if($count == 1){
+            $_SESSION['logged_in'] = 1; 
+            echo "<script>alert('Successfully Logged in!!')</script>";  
+            header("Location: index.php"); 
+        }  
+        else{  
+            echo "<script>alert('Login failed. Invalid username or password')</script>";  
+        } 
+  }
+
+  
 ?>
  
 <body>
