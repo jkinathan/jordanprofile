@@ -1,0 +1,5 @@
+<?php
+include 'server.php';
+
+
+?>

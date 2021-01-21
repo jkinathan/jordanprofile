@@ -1,19 +1,8 @@
 <?php include 'header.php';
 ?>
 <?php 
-$servername = "localhost";
-$user = "root";
-$pass = "";
-$db = "profile";
-
-$conn = new mysqli($servername,$user,$pass,$db);
-
-if($conn->error){
-    echo "DB error ".$conn->error."";
-}
-else{
-    echo "Connection successful";
-}
+include 'server.php';?>
+<?php
 
 //inserting home information into our database
 
@@ -101,23 +90,23 @@ if(isset($_POST['update'])){
 if(isset($_POST['bookadd'])){
     echo "<br>";
 
-    $id = $_POST['id'];
+    $id = $_POST['bid'];
     
-    $name = $_POST['name'];
-    $author = $_POST['author'];
-    $photo = $_FILES['image']['name'];
-    $description = $_POST['description'];
+    $name = $_POST['bname'];
+    $author = $_POST['bauthor'];
+    // $photo = $_FILES['bimage']['name'];
+    $description = $_POST['bdescription'];
     
     // $target = "assets/images/".basename($image);
 
-    $filetmpname = $_FILES['image']['tmp_name'];
-    //folder where images will be uploaded
-    $folder = 'assets/images/';
-    //function for saving the uploaded images in a specific folder
-    move_uploaded_file($filetmpname, $folder.$photo);
+    // $filetmpname = $_FILES['bimage']['tmp_name'];
+    // //folder where images will be uploaded
+    // $folder = 'assets/images/';
+    // //function for saving the uploaded images in a specific folder
+    // move_uploaded_file($filetmpname, $folder.$photo);
 
-    $sql = "insert into books (id,name,author,image,description) values 
-    ('$id','$name','$author','$photo','$description')";
+    $sql = "insert into books (id,name,author,description) values 
+    ('$id','$name','$author','$description')";
 
     if($conn->query($sql)){
         echo '
@@ -138,18 +127,17 @@ if(isset($_POST['bookadd'])){
 
 //books updating
 
-if(isset($_POST['bookupdating'])){
+if(isset($_POST['bookupdate'])){
     echo "<br>";
 
-    $id = $_POST['id'];
-    
-    $name = $_POST['name'];
-    $author = $_POST['author'];
-    $description = $_POST['description'];
-    $photo = $_FILES['image']['name'];
+    $id = $_POST['bid'];
+    $name = $_POST['bname'];
+    $author = $_POST['bauthor'];
+    $description = $_POST['bdescription'];
+    $photo = $_FILES['bimage']['name'];
     // $target = "assets/images/".basename($image);
 
-    $filetmpname = $_FILES['image']['tmp_name'];
+    $filetmpname = $_FILES['bimage']['tmp_name'];
     //folder where images will be uploaded
     $folder = 'assets/images/';
     //function for saving the uploaded images in a specific folder
@@ -157,8 +145,6 @@ if(isset($_POST['bookupdating'])){
 
     $sql = "UPDATE books SET name= '$name',author='$author',image='$photo',description='$description' WHERE id=$id";
 
-    $sql = "insert into books (id,name,author,image,description) values 
-    ('$id','$name','$author','$photo','$description')";
 
     if($conn->query($sql)){
         echo '
@@ -176,7 +162,123 @@ if(isset($_POST['bookupdating'])){
     }
 
 }
+//project adding
+if(isset($_POST['projectadd'])){
+    echo "<br>";
+
+    $pid = $_POST['pid'];
+    $pphoto = $_FILES['pimage']['name'];
+    $pname = $_POST['pname'];
+    $pdescription = $_POST['pdescription'];
+    $purl = $_POST['url'];
+
+    // $target = "assets/images/".basename($image);
+
+    $pfiletmpname = $_FILES['pimage']['tmp_name'];
+    //folder where images will be uploaded
+    $pfolder = 'assets/images/';
+    //function for saving the uploaded images in a specific folder
+    move_uploaded_file($pfiletmpname, $pfolder.$pphoto);
+
+    $sql = "insert into projects (id,image,name,description,url) values 
+    ('$pid','$pphoto','$pname','$pdescription','$purl')";
+
+    if($conn->query($sql)){
+        echo '
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            New Project Added successfully please refresh to view new changes on project tab
+        </div>';
+    }
+    else{
+        
+        echo '<div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            Error is here: ".$conn->error."
+        </div>';
+    }
+
+}
+//project updating
+if(isset($_POST['projectupdate'])){
+    echo "<br>";
+
+    $pid = $_POST['pid'];
+    $pphoto = $_FILES['pimage']['name'];
+    $pname = $_POST['pname'];
+    $pdescription = $_POST['pdescription'];
+    $purl = $_POST['url'];
+
+    // $target = "assets/images/".basename($image);
+
+    $pfiletmpname = $_FILES['pimage']['tmp_name'];
+    //folder where images will be uploaded
+    $pfolder = 'assets/images/';
+    //function for saving the uploaded images in a specific folder
+    move_uploaded_file($pfiletmpname, $pfolder.$pphoto);
+
+    $sql = "UPDATE projects SET image= '$pphoto',name='$pname',description='$pdescription',url='$purl' WHERE id=$pid";
+
+
+    if($conn->query($sql)){
+        echo '
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            Project Updated successfully please click on project tab to see changes
+        </div>';
+    }
+    else{
+        
+        echo '<div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            Error is here: ".$conn->error."
+        </div>';
+    }
+
+}
+//admin user update
+
+if(isset($_POST['adminupdate'])){
+    echo "<br>";
+
+    // $pid = $_POST['pid'];
+    
+    $aname = $_POST['aname'];
+    $aemail = $_POST['aemail'];
+    $appass = $_POST['apass'];
+    $appass2 = $_POST['apass2'];
+
+    if($appass != $appass2){
+        echo '
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+            Failed to update admin details, password mismatch
+        </div>';
+    }
+    else{
+        $sql = "UPDATE users SET name= '$aname',email='$aemail',password='$appass' WHERE id=1";
+
+
+        if($conn->query($sql)){
+            echo '
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+                Admin details Updated Successfully!
+            </div>';
+        }
+        else{
+            
+            echo '<div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display="none";">&times;</span>
+                Error is here: ".$conn->error."
+            </div>';
+        }
+    }
+    
+
+}
 ?>
+
 <script src="assets/js/style.js"></script>
 
 <!-- Tab links -->
@@ -326,16 +428,16 @@ if(isset($_POST['bookupdating'])){
     <form action="index.php" method="post" enctype="multipart/form-data">
         
             <small>Book ID </small>
-            <input type="text" name="id" placeholder="Enter unique book id"/>
+            <input type="text" name="bid" placeholder="Enter unique book id"/>
                 
             <small>Book Name </small>
-              <input type="text" name="name" placeholder="Enter book name"/>
+              <input type="text" name="bname" placeholder="Enter book name"/>
               <small>Book Author </small>
-              <input type="text" name="author" placeholder="Enter author of book"/>
+              <input type="text" name="bauthor" placeholder="Enter author of book"/>
               <small>Image</small>
-              <input type="file" name="image" /><br>
+              <input type="file" name="bimage" /><br>
               <small>Description</small>
-              <input type="text" name="description" placeholder="Enter small description"/>
+              <input type="text" name="bdescription" placeholder="Enter small description"/>
               
             <button type="submit" name="bookadd">Add new Book</button>
             <button type="submit" name="bookupdate">Update Book</button>
@@ -348,17 +450,67 @@ if(isset($_POST['bookupdating'])){
 <!-- Projects -->
 <div id="Tokyo" class="tabcontent">
     <b><h2>Project contents<h2></b>
-        <form action="">
-              <small>Project Name</small>
-              <input type="text" name="name" placeholder="Enter project name"/>
-              <small>Project Image </small>
-              <input type="file" name="image"/><br>
-              <small>Project Description</small>
-              <input type="text" name="pdesc" placeholder="Enter project description"/>
-              <small>Project url</small>
-              <input type="text" name="url" placeholder="Enter your project url"/>
+    <?php
+    
+        $sql = "select * from projects";
+
+        $myquery = $conn->query($sql);
+
+        echo "
+        <div style='overflow-x:auto;'>
+        <table border='1'>
+
+        <tr>
+
+        <th>Id</th>
+
+        <th>Image</th>
+
+        <th>Name</th>
+
+        <th>Description</th>
+
+        <th>Url</th>
+
+        </tr>";
+
+
+
+        while($row = $myquery->fetch_assoc()){
+
+            echo "<tr>";
+
+            echo "<td>" . $row['id'] . "</td>";
+
+            echo "<td>" . $row['image'] . "</td>";
+
+            echo "<td>" . $row['name'] . "</td>";
+
+            echo "<td>" . $row['description'] . "</td>";
+
+            echo "<td>" . $row['url'] . "</td>";
+
+            echo "</tr>";
+
+            }
+
+            echo "</table> </div>";
+
+    ?>
+        <form action="index.php" method="POST" enctype="multipart/form-data">
+            <small>Project ID</small>
+            <input type="text" name="pid" placeholder="Please enter unique project id"/>
+            <small>Project Name</small>
+            <input type="text" name="pname" placeholder="Enter project name"/>
+            <small>Project Image </small>
+            <input type="file" name="pimage"/><br>
+            <small>Project Description</small>
+            <input type="text" name="pdescription" placeholder="Enter project description"/>
+            <small>Project url</small>
+            <input type="text" name="url" placeholder="Enter your project url"/>
               
-            <button>Submit</button>
+            <button type="submit" name="projectadd">Add new Project</button>
+            <button type="submit" name="projectupdate">Update Existing Project</button>
           </div>
         </div>
       </form>
@@ -366,17 +518,58 @@ if(isset($_POST['bookupdating'])){
 
 <!-- Users -->
 <div id="Tokyo2" class="tabcontent">
-    <b><h2>User Details<h2></b>
-        <form action="">
+    <b><h2>Update Admin Details<h2></b>
+    <?php
+  
+        $sql = "select * from users";
+
+        $myquery = $conn->query($sql);
+
+        echo "
+        <div style='overflow-x:auto;'>
+        <table border='1'>
+
+        <tr>
+
+        <th>Id</th>
+
+        <th>Name</th>
+
+        <th>Email</th>
+
+        </tr>";
+
+
+
+        while($row = $myquery->fetch_assoc()){
+
+            echo "<tr>";
+
+            echo "<td>" . $row['id'] . "</td>";
+
+            echo "<td>" . $row['name'] . "</td>";
+
+            echo "<td>" . $row['email'] . "</td>";
+
+            echo "</tr>";
+
+            }
+
+            echo "</table> </div>";
+
+    ?>
+        <form action="index.php" method="POST" enctype="multipart/form-data">
+            <small>ID</small>
+              <input type="text" name="aid" value="1" disabled placeholder="Enter about your name"/>
               <small>Name</small>
-              <input type="text" name="name" placeholder="Enter about your name"/>
+              <input type="text" name="aname" placeholder="Enter about your name"/>
               <small>Email </small>
-              <input type="text" name="email" placeholder="Enter your email"/>
+              <input type="text" name="aemail" placeholder="Enter your email"/>
               <small>Password</small>
-              <input type="text" name="pass" placeholder="Enter your password"/>
+              <input type="text" name="apass" placeholder="Enter your new admin password"/>
               <small>Confirm password</small>
-              <input type="text" name="pass2" placeholder="Enter your password again"/>
-            <button>Submit</button>
+              <input type="text" name="apass2" placeholder="Enter your new admin password again"/>
+            <button type="submit" name="createuser">Update Admin details</button>
           </div>
         </div>
       </form>
@@ -386,8 +579,54 @@ if(isset($_POST['bookupdating'])){
 <div id="Tokyo1" class="tabcontent">
     <b><h2>Contact Information<h2></b>
         <form action="">
-            <small>Contact details</small>
-            
+            <small>User Contact details</small>
+            <?php
+  
+                $sql = "select * from contact";
+
+                $myquery = $conn->query($sql);
+
+                echo "
+                <div style='overflow-x:auto;'>
+                <table border='1'>
+
+                <tr>
+
+                <th>Id</th>
+
+                <th>Firstname</th>
+
+                <th>Lastname</th>
+
+                <th>Country</th>
+
+                <th>Message</th>
+
+                </tr>";
+
+
+
+                while($row = $myquery->fetch_assoc()){
+
+                    echo "<tr>";
+
+                    echo "<td>" . $row['id'] . "</td>";
+
+                    echo "<td>" . $row['firstname'] . "</td>";
+
+                    echo "<td>" . $row['lastname'] . "</td>";
+
+                    echo "<td>" . $row['country'] . "</td>";
+
+                    echo "<td>" . $row['message'] . "</td>";
+
+                    echo "</tr>";
+
+                    }
+
+                    echo "</table> </div>";
+
+            ?>
           </div>
         </div>
       </form>
