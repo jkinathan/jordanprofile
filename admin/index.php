@@ -286,6 +286,7 @@ if(isset($_POST['createuser'])){
     
 
 }
+
 ?>
 
 <script src="assets/js/style.js"></script>
@@ -328,6 +329,9 @@ if(isset($_POST['createuser'])){
     <th>Address</th>
 
     <th>Photo</th>
+
+    <th>Action</th>
+
     </tr>";
 
 
@@ -349,6 +353,20 @@ if(isset($_POST['createuser'])){
         echo "<td>" . $row['address'] . "</td>";
 
         echo "<td>" . $row['photo'] . "</td>";
+
+        if( $row['is_deleted'] == 0 ){
+            echo "
+            <td>
+                <a name='deletehomeId' href='delete.php?deletehomeId=$row[id]' style='color: red;'>Delete</a> 
+            </td>";
+        }
+        else{
+            echo "
+            <td>
+                <a name='deletehomeId' href='delete.php?deletehomeId=$row[id]' style='color: orange;'>Undo Delete</a> 
+            </td>
+            ";
+        }
 
         echo "</tr>";
 
@@ -409,6 +427,8 @@ if(isset($_POST['createuser'])){
 
     <th>Description</th>
 
+    <th>Action</th>
+
     </tr>";
 
 
@@ -426,6 +446,22 @@ if(isset($_POST['createuser'])){
         echo "<td>" . $row['photo'] . "</td>";
 
         echo "<td>" . $row['description'] . "</td>";
+        
+        if( $row['is_deleted'] == 0 ){
+            echo "
+            <td>
+                <a name='deleteId' href='delete.php?deleteId=$row[id]' style='color: red;'>Delete</a> 
+            </td>";
+        }
+        else{
+            echo "
+            <td>
+                <a name='deleteId' href='delete.php?deleteId=$row[id]' style='color: orange;'>Undo Delete</a> 
+            </td>
+            ";
+        }
+        
+        
 
         echo "</tr>";
 
@@ -480,6 +516,8 @@ if(isset($_POST['createuser'])){
 
         <th>Url</th>
 
+        <th>Action</th>
+
         </tr>";
 
 
@@ -497,6 +535,20 @@ if(isset($_POST['createuser'])){
             echo "<td>" . $row['description'] . "</td>";
 
             echo "<td>" . $row['url'] . "</td>";
+
+            if( $row['is_deleted'] == 0 ){
+                echo "
+                <td>
+                    <a name='deleteprojectId' href='delete.php?deleteprojectId=$row[id]' style='color: red;'>Delete</a> 
+                </td>";
+            }
+            else{
+                echo "
+                <td>
+                    <a name='deleteprojectId' href='delete.php?deleteprojectId=$row[id]' style='color: orange;'>Undo Delete</a> 
+                </td>
+                ";
+            }
 
             echo "</tr>";
 

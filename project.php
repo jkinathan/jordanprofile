@@ -4,7 +4,7 @@ include 'admin/server.php'
 
 <?php
   
-  $sql = "select * from books";
+  $sql = "select * from books WHERE is_deleted = 0";
   
   $myquery = $conn->query($sql);
   while($row = $myquery->fetch_assoc()){
@@ -76,7 +76,7 @@ include 'admin/server.php'
  
  <?php
   
-  $sql = "select * from projects";
+  $sql = "select * from projects WHERE is_deleted = 0";
   
   $myquery = $conn->query($sql);
   while($row = $myquery->fetch_assoc()){

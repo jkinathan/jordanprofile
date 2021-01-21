@@ -4,7 +4,7 @@ include 'admin/server.php'
 
 <?php
   
-  $sql = "select * from home";
+  $sql = "select * from home WHERE is_deleted = 0";
   
   $myquery = $conn->query($sql);
   while($row = $myquery->fetch_assoc()){
